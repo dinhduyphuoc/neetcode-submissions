@@ -1,0 +1,21 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        freq = {}
+        bucket = [[] for _ in range(len(nums) + 1)]
+
+        for num in nums:
+            freq[num] = freq.get(num, 0) + 1
+        
+        for val, freq in freq.items():
+            bucket[freq].append(val)
+        
+        res = []
+        for i in range(len(bucket) - 1, -1, -1):
+            if not bucket:
+                continue
+            for val in bucket[i]:
+                res.append(val)
+                if len(res) == k:
+                    return res
+
+        return res
