@@ -4,14 +4,14 @@ class Solution:
         cols = [set() for _ in range(9)]
         boxes = [set() for _ in range(9)]
         
-        for R in range(9):
-            for C in range(9):
-                if board[R][C] == '.':
+        for i in range(len(board)):
+            for j in range(len(board)):
+                if board[i][j] == ".":
                     continue
-                boxIdx = (R // 3) * 3 + (C // 3) 
-                if board[R][C] in rows[R] or board[R][C] in cols[C] or board[R][C] in boxes[boxIdx]:
+                boxNo = (i // 3) * 3 + (j // 3)
+                if board[i][j] in cols[j] or board[i][j] in rows[i] or board[i][j] in boxes[boxNo]:
                     return False
-                rows[R].add(board[R][C])
-                cols[C].add(board[R][C])
-                boxes[boxIdx].add(board[R][C])
+                cols[j].add(board[i][j]) 
+                rows[i].add(board[i][j])
+                boxes[boxNo].add(board[i][j])
         return True

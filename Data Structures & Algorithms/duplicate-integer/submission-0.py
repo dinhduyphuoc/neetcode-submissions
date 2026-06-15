@@ -1,10 +1,10 @@
 class Solution:
     def hasDuplicate(self, nums: List[int]) -> bool:
-        check = set()
+        dup = set()
 
         for num in nums:
-            if num in check:
+            if num in dup:
                 return True
-            check.add(num)
+            dup.add(num)
         
         return False

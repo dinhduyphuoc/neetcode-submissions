@@ -8,7 +8,9 @@ class Solution:
         heap = []
         
         for num, f in freq.items():
-            heapq.heappush(heap, (-f, num))
+            heapq.heappush(heap, (f, num))
+            if len(heap) > k:
+                heapq.heappop(heap)
         
         res = []
 

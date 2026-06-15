@@ -1,14 +1,20 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        check = [0] * 26
+        if len(s) != len(t):
+            return False
+        
+        count = [0] * 26
 
         for c in s:
-            check[ord(c) - ord('a')] += 1
+            count[ord(c) - ord('a')] += 1
         
         for c in t:
-            idx = ord(c) - ord('a')
-            if check[idx] == 0:
+            count[ord(c) - ord('a')] -= 1
+            if count[ord(c) - ord('a')] < 0:
                 return False
-            check[idx] -= 1
+            
+        for num in count:
+            if num > 0:
+                return False
         
-        return sum(check) == 0
+        return True

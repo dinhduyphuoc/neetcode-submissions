@@ -1,15 +1,17 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        groups = defaultdict(list)
+        check = {}
 
         for s in strs:
-            count = [0] * 26
-            for c in s:
-                count[ord(c) - ord('a')] += 1
-            groups[tuple(count)].append(s)
+            sort = "".join(sorted(s))
+            if sort not in check:
+                check[sort] = [s]
+            else:
+                check[sort].append(s)
         
         res = []
-        for val in groups.values():
-            res.append(val)
+
+        for key, items in check.items():
+            res.append(items)
         
         return res
